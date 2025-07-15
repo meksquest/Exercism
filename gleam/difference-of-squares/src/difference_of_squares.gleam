@@ -1,14 +1,18 @@
 import gleam/list
 
 pub fn square_of_sum(n: Int) -> Int {
-  let numbers = list.range(1, n)
-  let assert Ok(sum) = numbers |> list.reduce(fn(acc, x) { acc + x })
+  let assert Ok(sum) =
+    list.range(1, n)
+    |> list.reduce(fn(acc, x) { acc + x })
+
   sum * sum
 }
 
 pub fn sum_of_squares(n: Int) -> Int {
-  let numbers = list.range(1, n)
-  let assert Ok(sum) = numbers |> list.reduce(fn(acc, x) { acc + { x * x } })
+  let assert Ok(sum) =
+    list.range(1, n)
+    |> list.reduce(fn(acc, x) { acc + { x * x } })
+
   sum
 }
 
