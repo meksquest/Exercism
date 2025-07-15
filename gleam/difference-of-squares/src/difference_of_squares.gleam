@@ -1,19 +1,9 @@
-import gleam/list
-
 pub fn square_of_sum(n: Int) -> Int {
-  let assert Ok(sum) =
-    list.range(1, n)
-    |> list.reduce(fn(acc, x) { acc + x })
-
-  sum * sum
+  { n * n } * { n + 1 } * { n + 1 } / 4
 }
 
 pub fn sum_of_squares(n: Int) -> Int {
-  let assert Ok(sum) =
-    list.range(1, n)
-    |> list.reduce(fn(acc, x) { acc + { x * x } })
-
-  sum
+  { n * { n + 1 } * { 2 * n + 1 } } / 6
 }
 
 pub fn difference(n: Int) -> Int {
