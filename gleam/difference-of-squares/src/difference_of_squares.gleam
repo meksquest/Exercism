@@ -1,9 +1,10 @@
 pub fn square_of_sum(n: Int) -> Int {
-  { n * n } * { n + 1 } * { n + 1 } / 4
+  let sum = n * { n + 1 } / 2
+  sum * sum
 }
 
 pub fn sum_of_squares(n: Int) -> Int {
-  { n * { n + 1 } * { 2 * n + 1 } } / 6
+  n * { n + 1 } * { 2 * n + 1 } / 6
 }
 
 pub fn difference(n: Int) -> Int {
