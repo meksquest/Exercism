@@ -26,14 +26,11 @@ pub type Activity {
 
 pub fn rate_activity(activity: Activity) -> Approval {
   case activity {
-    BoardGame -> No
-    Chill -> No
     Movie(Romance) -> Yes
-    Movie(_) -> No
     Restaurant(Korean) -> Yes
     Restaurant(Turkish) -> Maybe
     Walk(km) if km > 11 -> Yes
     Walk(km) if km > 6 -> Maybe
-    Walk(_) -> No
+    _ -> No
   }
 }
