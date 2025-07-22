@@ -1,9 +1,9 @@
-pub type TreasureChest(a) {
-  TreasureChest(password: String, treasure: a)
+pub type TreasureChest(treasure) {
+  TreasureChest(String, treasure)
 }
 
-pub type UnlockResult(a) {
-  Unlocked(a)
+pub type UnlockResult(treasure) {
+  Unlocked(treasure)
   WrongPassword
 }
 
@@ -11,8 +11,8 @@ pub fn get_treasure(
   chest: TreasureChest(treasure),
   password: String,
 ) -> UnlockResult(treasure) {
-  case chest.password == password {
-    True -> Unlocked(chest.treasure)
-    False -> WrongPassword
+  case chest {
+    TreasureChest(set_pw, treasure) if password == set_pw -> Unlocked(treasure)
+    _ -> WrongPassword
   }
 }
