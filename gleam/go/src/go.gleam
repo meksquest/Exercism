@@ -21,23 +21,24 @@ pub fn apply_rules(
   rule3: fn(Game) -> Result(Game, String),
   rule4: fn(Game) -> Result(Game, String),
 ) -> Game {
-  let res =
-    Ok(game)
-    |> result.try(rule1)
+  let result =
+    game
+    |> rule1
+    |> result.map(rule2)
     |> result.try(rule3)
     |> result.try(rule4)
 
-  case res {
-    Error(err) -> Game(..game, error: err)
-    Ok(updated_game) ->
-      Game(..updated_game, player: switch_player(updated_game.player))
-      |> rule2()
+  case result {
+    Ok(game) -> change_player(game)
+    Error(e) -> Game(..game, error: e)
   }
 }
 
-fn switch_player(player) {
-  case player {
+fn change_player(game: Game) -> Game {
+  let other_player = case game.player {
     Black -> White
     White -> Black
   }
+
+  Game(..game, player: other_player)
 }
