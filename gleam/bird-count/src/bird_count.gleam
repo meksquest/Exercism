@@ -1,37 +1,36 @@
-import gleam/list
-
 pub fn today(days: List(Int)) -> Int {
-  case list.first(days) {
-    Ok(int) -> int
-    _ -> 0
+  case days {
+    [] -> 0
+    [today, ..] -> today
   }
 }
 
 pub fn increment_day_count(days: List(Int)) -> List(Int) {
   case days {
     [] -> [1]
-    [count, ..rest] -> [count + 1, ..rest]
+    [today, ..rest] -> [today + 1, ..rest]
   }
 }
 
 pub fn has_day_without_birds(days: List(Int)) -> Bool {
-  case list.filter(days, fn(day_count) { day_count == 0 }) {
+  case days {
     [] -> False
-    _ -> True
+    [0, ..] -> True
+    [_, ..rest] -> has_day_without_birds(rest)
   }
 }
 
 pub fn total(days: List(Int)) -> Int {
   case days {
-    [count, ..rest] -> count + total(rest)
     [] -> 0
+    [today, ..rest] -> today + total(rest)
   }
 }
 
 pub fn busy_days(days: List(Int)) -> Int {
   case days {
-    [count, ..rest] if count >= 5 -> 1 + busy_days(rest)
-    [_count, ..rest] -> busy_days(rest)
     [] -> 0
+    [count, ..rest] if count >= 5 -> 1 + busy_days(rest)
+    [_, ..rest] -> busy_days(rest)
   }
 }
