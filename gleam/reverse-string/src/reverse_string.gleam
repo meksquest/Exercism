@@ -1,5 +1,8 @@
+import gleam/list
 import gleam/string
 
 pub fn reverse(value: String) -> String {
-  string.reverse(value)
+  string.to_graphemes(value)
+  |> list.reverse
+  |> string.concat
 }
