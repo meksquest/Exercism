@@ -1,10 +1,10 @@
-pub fn score(x: Float, y: Float) -> Int {
-  let dist2 = x *. x +. y *. y
+import gleam/float
 
-  case dist2 {
-    d if d <=. 1.0 -> 10
-    d if d <=. 25.0 -> 5
-    d if d <=. 100.0 -> 1
+pub fn score(x: Float, y: Float) -> Int {
+  case float.square_root(x *. x +. y *. y) {
+    Ok(d) if d <=. 1.0 -> 10
+    Ok(d) if d <=. 5.0 -> 5
+    Ok(d) if d <=. 10.0 -> 1
     _ -> 0
   }
 }
