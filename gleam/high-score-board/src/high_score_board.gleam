@@ -16,7 +16,7 @@ pub fn add_player(
 }
 
 pub fn remove_player(score_board: ScoreBoard, player: String) -> ScoreBoard {
-  todo
+  score_board |> dict.drop([player])
 }
 
 pub fn update_score(
