@@ -12,7 +12,7 @@ pub fn add_player(
   player: String,
   score: Int,
 ) -> ScoreBoard {
-  todo
+  dict.insert(score_board, player, score)
 }
 
 pub fn remove_player(score_board: ScoreBoard, player: String) -> ScoreBoard {
