@@ -4,7 +4,7 @@ pub type ScoreBoard =
   Dict(String, Int)
 
 pub fn create_score_board() -> ScoreBoard {
-  dict.new() |> dict.insert("The Best Ever", 1_000_000)
+  dict.from_list([#("The Best Ever", 1_000_000)])
 }
 
 pub fn add_player(
@@ -16,7 +16,7 @@ pub fn add_player(
 }
 
 pub fn remove_player(score_board: ScoreBoard, player: String) -> ScoreBoard {
-  score_board |> dict.drop([player])
+  dict.delete(score_board, player)
 }
 
 pub fn update_score(
@@ -27,7 +27,7 @@ pub fn update_score(
   case dict.get(score_board, player) {
     Ok(current_points) ->
       dict.insert(score_board, player, current_points + points)
-    Error(_) -> score_board
+    _ -> score_board
   }
 }
 
