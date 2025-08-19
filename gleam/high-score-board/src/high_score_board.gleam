@@ -24,7 +24,11 @@ pub fn update_score(
   player: String,
   points: Int,
 ) -> ScoreBoard {
-  todo
+  case dict.get(score_board, player) {
+    Ok(current_points) ->
+      dict.insert(score_board, player, current_points + points)
+    Error(_) -> score_board
+  }
 }
 
 pub fn apply_monday_bonus(score_board: ScoreBoard) -> ScoreBoard {
