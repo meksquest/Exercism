@@ -4,7 +4,7 @@ pub type ScoreBoard =
   Dict(String, Int)
 
 pub fn create_score_board() -> ScoreBoard {
-  todo
+  dict.new() |> dict.insert("The Best Ever", 1_000_000)
 }
 
 pub fn add_player(
