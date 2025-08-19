@@ -32,5 +32,5 @@ pub fn update_score(
 }
 
 pub fn apply_monday_bonus(score_board: ScoreBoard) -> ScoreBoard {
-  todo
+  dict.map_values(score_board, fn(_, current_points) { current_points + 100 })
 }
